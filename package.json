@@ -1,0 +1,22 @@
+{
+  "name": "arca-api",
+  "version": "0.0.1",
+  "description": "API de um sistema para igrejas com gerenciamento de membros",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flipggs/Arca-API.git"
+  },
+  "author": "Felipe Siqueira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/flipggs/Arca-API/issues"
+  },
+  "homepage": "https://github.com/flipggs/Arca-API#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
