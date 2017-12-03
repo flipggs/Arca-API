@@ -1,8 +1,29 @@
-var express = require("express");
-var app = express();
- 
+const express = require("express");
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const app = express();
+const config = require('./config')
+
 app.use(express.static("public"));
- 
+
+
+app.get('/', (req, res) => {
+  res.redirect('/apidoc');
+});
+
+app.use((req, res, next) => {
+  const token = req.get('Authorization')
+
+  if (token) {
+    req.token = token
+    next()
+  } else {
+    res.status(403).send({
+      error: 'Please provide an Authorization header to identify yourself (can be whatever you want)'
+    })
+  }
+});
+
 /**
  * @api {get} /signin Singin
  * @apiGroup Sistema
@@ -16,25 +37,8 @@ app.use(express.static("public"));
  *    }
  *
  */
-app.get("/signin", function(req, res) {
-  res.json({status: "Logado!"});
-});
- 
-/**
- * @api {post} /signup Signup
- * @apiGroup Sistema
- *
- * @apiSuccess {String} status Mensagem de cadastro efetuado
- * 
- * @apiSuccessExample {json} Sucesso
- *    HTTP/1.1 200 OK
- *    {
- *      "status": "Cadastrado!"
- *    }
- *
- */
-app.post("/signup", function(req, res) {
-  res.json({status: "Cadastrado!"});
+app.get("/signin", function (req, res) {
+
 });
 
 
@@ -44,27 +48,8 @@ app.post("/signup", function(req, res) {
 
 
 
-/**
- * @api {post} /categorie Signup
- * @apiGroup Arca
- *
- * @apiSuccess {String} title Mensagem de cadastro efetuado
- * 
- * @apiSuccessExample {json} Sucesso
- *    HTTP/1.1 200 OK
- *    {
- *      "title": "Cadastrado!"
- *    }
- *
- */
-app.post("/categorie", function(req, res) {
-    res.json({title: "O que fazer agora!"});
-  });
 
 
-
-
-
-app.listen(3000, function() {
- console.log("Api up and running!");
-});
+app.listen(config.port, () => {
+  console.log('Server listening on port %s, Ctrl+C to stop', config.port)
+})

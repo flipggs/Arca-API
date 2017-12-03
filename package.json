@@ -4,6 +4,7 @@
   "description": "API de um sistema para igrejas com gerenciamento de membros",
   "main": "app.js",
   "scripts": {
+    "start": "node app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +18,8 @@
   },
   "homepage": "https://github.com/flipggs/Arca-API#readme",
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.3"
   }
 }
